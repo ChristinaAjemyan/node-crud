@@ -1,0 +1,35 @@
+{
+  "name": "simple_crud_api",
+  "version": "1.0.0",
+  "description": "a simple crud api with node and express",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lamecksilva/Simple_CRUD_API.git"
+  },
+  "keywords": [
+    "crud",
+    "api",
+    "postman",
+    "node.js",
+    "express.js"
+  ],
+  "author": "lameck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lamecksilva/Simple_CRUD_API/issues"
+  },
+  "homepage": "https://github.com/lamecksilva/Simple_CRUD_API#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
