@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var cors = require('cors')
 
 // Create an instance for express
 const app = express();
@@ -12,7 +13,8 @@ const project = require('./routes/project');
 
 // Apply the bodyParser middleware, to get json data from requests (Body)
 app.use(bodyParser.json());
-
+ 
+app.use(cors())
 // Apply the routes of /api/person
 app.use('/api/person', person);
 app.use('/api/project', project);
