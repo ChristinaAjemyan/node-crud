@@ -22,17 +22,39 @@ router.get('/', (req, res) => {
     });
 });
 
-// @Route   POST api/person/new
+// @Route   GET api/person/:id
+// @desc    Get person by id
+// @access  Public
+router.get('/:id', (req, res) => {
+    // Find one person by id
+    Person.findOne({ _id: req.params.id })
+        .then(person => {
+            // Returning person to client
+            return res.json(person);
+        })
+        .catch(error => {
+            // Error handling
+            return res.status(500).json(error);
+        });
+});
+
+// @Route   POST api/person/
 // @desc    Creating a new person
 // @access  Public
-router.post('/new', (req, res) => {
+router.post('/', (req, res) => {
   // Get name and age from body request
-  const { name, age } = req.body;
+  const { name, email, position, address, phone, dateOfBirth, projects, skills } = req.body;
 
   // Creating a new Person (Model)
   const newPerson = new Person({
-    name,
-    age
+      name,
+      email,
+      position,
+      address,
+      phone,
+      dateOfBirth,
+      projects,
+      skills
   });
 
   // Saving the new Person in the db
@@ -45,13 +67,13 @@ router.post('/new', (req, res) => {
 // @Route   PUT api/person/update/:id
 // @desc    Update a person
 // @access  Public
-router.put('/update/:id', (req, res) => {
-  const { name, age } = req.body;
+router.put('/:id', (req, res) => {
+  const { name, email, position, address, phone, dateOfBirth, projects, skills } = req.body;
 
   Person.findOneAndUpdate(
-    { _id: { $eq: req.params.id } }, // Find one id equals to id in params
-    { name, age }, // data to be updated
-    { new: true } // to mongoose returns the updated document
+    { _id: req.params.id }, // Find one id equals to id in params
+    { name, email, position, address, phone, dateOfBirth, projects, skills }, // data to be updated
+    { upsert: true, new: true } // to mongoose returns the updated document
   )
     .then(newPerson => {
       return res.json(newPerson);
