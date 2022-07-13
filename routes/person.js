@@ -73,7 +73,7 @@ router.put('/:id', (req, res) => {
   Person.findOneAndUpdate(
     { _id: req.params.id }, // Find one id equals to id in params
     { name, email, position, address, phone, dateOfBirth, projects, skills }, // data to be updated
-    { upsert: true, new: true } // to mongoose returns the updated document
+    { new: true } // to mongoose returns the updated document
   )
     .then(newPerson => {
       return res.json(newPerson);
